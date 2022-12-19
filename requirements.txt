@@ -3,3 +3,5 @@ django-extensions==3.2.0
 Pillow==9.3.0
 coverage==6.5.0
 flake8
+flake8-isort
+

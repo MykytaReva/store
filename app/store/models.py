@@ -1,11 +1,18 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 
 def product_photo(instance, filename):
     return 'product/{0}/{1}'.format(instance.category.name, filename)
+
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(
+            is_active=True
+        )
 
 
 class Category(models.Model):
@@ -20,6 +27,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        to_slug = str(self.name)
+        self.slug = slugify(to_slug)
+        return super().save(*args, **kwargs)
 
 
 class Product(models.Model):
@@ -43,6 +55,8 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
+    products = ProductManager()
 
     class Meta:
         verbose_name_plural = 'Products'

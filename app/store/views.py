@@ -1,9 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
+
 from .models import Category, Product
-
-
-def categories(request):
-    return {'categories': Category.objects.all(), }
 
 
 def category_list(request, category_slug):
@@ -16,8 +13,8 @@ def category_list(request, category_slug):
     return render(request, 'products/category.html', context=context)
 
 
-def all_products(request):
-    products = Product.objects.all()
+def product_all(request):
+    products = Product.products.all()
     context = {
         'products': products,
     }
