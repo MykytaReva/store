@@ -10,4 +10,3 @@ urlpatterns = [
     path('search/<slug:category_slug>/',
          views.category_list, name='category_list'),
 ]
-git
