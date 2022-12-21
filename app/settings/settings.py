@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-6$gkou2mikz*)r_1i9s1t@boav)_e+5qeo06j$i=+7a0=c1e+6
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'yourdomain.com']
 
 
 INSTALLED_APPS = [
@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'store',
+    'basket',
 
     'django_extensions',
 
@@ -48,6 +49,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'store.context_processors.categories',
+                'basket.context_processors.basket',
             ],
         },
     },
@@ -86,6 +88,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
