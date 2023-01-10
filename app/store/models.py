@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from account.models import UserBase
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
@@ -41,7 +41,7 @@ class Product(models.Model):
         on_delete=models.CASCADE,
     )
     created_by = models.ForeignKey(
-        User,
+        UserBase,
         related_name='product_created',
         on_delete=models.CASCADE,
     )

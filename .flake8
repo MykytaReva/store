@@ -11,3 +11,4 @@ exclude =
 per-file-ignores =
     */apps.py: F401
     *views.py: I001, I003, I005
+
