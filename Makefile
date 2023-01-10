@@ -32,3 +32,6 @@ report:
 show: coverage \
 	html \
 	show-report
+
+kill:
+	lsof -t -i tcp:8000 | xargs kill -9
